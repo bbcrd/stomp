@@ -1,3 +1,18 @@
+This is a fork of https://github.com/morellon/stomp/ by BBC R&D which
+incorporates changes required for our {RadioVIS
+prototype}[http://www.bbc.co.uk/blogs/researchanddevelopment/2011/03/testing-radiovis.shtml].
+
+In particular, our clients need to use anonymous logins to connect to
+ActiveMQ 5.4.x which rejects logins which contain empty "login:" and
+"password:" headers. This patch deletes those headers where they have
+been explicitly set to nil.
+
+For example:
+
+  client = Stomp::Client.new(nil, nil, "localhost", 61613)
+
+The rest of this README is the original document.
+
 ==README
 
 * (http://gitorious.org/projects/stomp/)
@@ -25,10 +40,10 @@ Support of Stomp protocol level 1.1 is announced as of gem version 1.2.0.
 ===Failover + SSL Example URL Usage
 
     options = "initialReconnectDelay=5000&randomize=false&useExponentialBackOff=false"
-    
+
     #remotehost1 uses SSL, remotehost2 doesn't
     client = Stomp::Client.new("failover:(stomp+ssl://login1:passcode1@remotehost1:61612,stomp://login2:passcode2@remotehost2:61613)?#{options}")
-    
+
     client.send("/my/queue", "hello world!")
     client.subscribe("/my/queue") do |msg|
       p msg
@@ -40,7 +55,7 @@ Support of Stomp protocol level 1.1 is announced as of gem version 1.2.0.
       :hosts => [
         {:login => "login1", :passcode => "passcode1", :host => "remotehost1", :port => 61612, :ssl => true},
         {:login => "login2", :passcode => "passcode2", :host => "remotehost2", :port => 61613, :ssl => false},
-        
+
       ],
       # These are the default parameters, don't need to be set
       :initial_reconnect_delay => 0.01,
@@ -55,17 +70,17 @@ Support of Stomp protocol level 1.1 is announced as of gem version 1.2.0.
       :parse_timeout => 5,
       :logger => nil,
     }
-    
+
     # for client
     client = Stomp::Client.new(hash)
-    
+
     # for connection
     connection = Stomp::Connection.new(hash)
-    
 
-===Contact info 
 
-Up until March 2009 the project was maintained and primarily developed by Brian McCallister. 
+===Contact info
+
+Up until March 2009 the project was maintained and primarily developed by Brian McCallister.
 
 The project is now maintained by Johan Sørensen <johan@johansorensen.com> and others.
 
@@ -92,7 +107,7 @@ The following people have contributed to Stomp:
 
 * Brian McCaliister
 * Glenn Rempe <glenn@rempe.us>
-* jstrachan 
+* jstrachan
 * Marius Mathiesen <marius.mathiesen@gmail.com>
 * Johan S√∏rensen <johan@johansorensen.com>
 * Thiago Morello <morellon@gmail.com>
@@ -110,6 +125,3 @@ The following people have contributed to Stomp:
 * Chris Needham
 * R.I. Pienaar
 * tworker
-
-
-
