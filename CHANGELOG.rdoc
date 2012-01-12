@@ -1,3 +1,6 @@
+== 1.2.1 2012-01-12
+* Added ability to use anonymous logins with ActiveMQ 5.4.x (BBC R&D fork)
+
 == 1.2.0 2011-14-12
 
 * Stomp 1.1 protocol support.  A significant change.  Please test existing 1.0 code well.  See the examples directory for 1.1 examples.
@@ -33,7 +36,7 @@
 * Switch to ruby supplied IO#ready?
 * Test enhancements for suppress_content_length header
 * Miscellaneous small documentation updates
-* Add parse_timeout parameter for use with hashed logins 
+* Add parse_timeout parameter for use with hashed logins
 * Allow connection to hosts with a - (dash) in the host name
 * Add limit parameter to thread joins
 
@@ -55,10 +58,10 @@
 
 == 1.1.4 2010-21-01
 
-* Added unreceive message method that sends the message back to its queue or to the 
+* Added unreceive message method that sends the message back to its queue or to the
   dead letter queue, depending on the :max_redeliveries option, similar to a13m one.
 * Added environment variable option for running 'rake test' on any stomp server, using any port with any user.
-* Added suppress_content_length header option for ActiveMQ knowing it is a text message (see: 
+* Added suppress_content_length header option for ActiveMQ knowing it is a text message (see:
   http://juretta.com/log/2009/05/24/activemq-jms-stomp/)
 * Fixed some bugs with Ruby 1.9 (concatenate string + exception)
 * Major changes on message parsing feature
@@ -80,7 +83,7 @@
 * Add support for connect_headers, to control the CONNECT command.
 * Refactored lib dir to separate concerns.
 * Better test coverage
-* General code cleanup. 
+* General code cleanup.
 
 == 1.0.6 2008-05-08
 
