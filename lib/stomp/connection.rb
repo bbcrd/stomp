@@ -677,8 +677,8 @@ module Stomp
       def connect(used_socket)
         @connect_headers = {} unless @connect_headers # Caller said nil/false
         headers = @connect_headers.clone
-        headers[:login] = @login
-        headers[:passcode] = @passcode
+        headers[:login] = @login or headers.delete(:login)
+        headers[:passcode] = @passcode or headers.delete(:passcode)
         _pre_connect
         _transmit(used_socket, "CONNECT", headers)
         @connection_frame = _receive(used_socket)
